@@ -1,0 +1,23 @@
+{
+  "name": "cypresstiendaropa",
+  "version": "1.0.0",
+  "description": "Pruebas automatizadas del sistema de tienda de ropa",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx cypress run"
+  },
+  "keywords": [
+    "qa",
+    "test",
+    "automation"
+  ],
+  "author": "Diego Chacón",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^10.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dchacon130/CypressTiendaRopa"
+  }
+}
