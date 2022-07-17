@@ -15,6 +15,17 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
+import './e2e'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+Cypress.Commands.add('login', (user, password, message) => {
+    cy.fixture('login').then((login)=>{
+        cy.get(login.signinOption).click();
+        cy.get(login.emailBox).type(user);
+        cy.get(login.passwordBox).type(password);
+        cy.get(login.signinButton).click();
+        cy.get(login.incorrectLoginBanner).should('contain', message);
+    })  
+})

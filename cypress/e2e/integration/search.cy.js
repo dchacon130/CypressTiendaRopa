@@ -5,22 +5,28 @@ describe('Search elements', () => {
     
     it('sesarch for elements with multiple results', () => {
         
-        cy.fixture('index').then((index)=>{
-            cy.get(index.searchField).type('dress');
-            cy.get(index.searchButton).click();
-        })
+        cy.search('dress');
+
         cy.fixture('searchResult').then((searchResult)=>{
             cy.get(searchResult.resultTitle).should('contain', 'dress');
         })
     });
 
     it('Search for elements with no results', () => {
-        cy.fixture('index').then((index)=>{
-            cy.get(index.searchField).type('qerty');
-            cy.get(index.searchButton).click();
-        })
+        
+        cy.search('qerty');
+
         cy.fixture('searchResult').then((searchResult)=>{
             cy.get(searchResult.badResultTitle).should('contain', 'No results were found for your search');
         })
+    });
+
+    it('Search from a text file', () => {
+        cy.readFile('cypress/support/search.txt').then((text)=>{
+            cy.search(text);
+        })
+        cy.fixture('searchResult').then((searchResult)=>{
+            cy.get(searchResult.resultTitle).should('contain', 'chiffon');
+        }) 
     });
 });
